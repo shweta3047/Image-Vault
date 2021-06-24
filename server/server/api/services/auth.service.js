@@ -24,7 +24,7 @@ export class AuthService {
     }
   }
 
-  async signin(userDetail) {
+  async signup(userDetail) {
     try {
       const { name, email, password, phoneNumber } = userDetail;
       if (!email || !password || !name)
