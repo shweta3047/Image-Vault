@@ -3,7 +3,7 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const ImageSchema = new mongoose.Schema(
   {
-    person: {
+    user: {
       type: ObjectId,
       ref: "User",
     },
@@ -21,4 +21,4 @@ const ImageSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Image", ImageSchema);
+export default mongoose.model("Images", ImageSchema);

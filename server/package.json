@@ -14,8 +14,11 @@
     "lint:fix": "eslint --fix ."
   },
   "dependencies": {
+    "@tensorflow-models/mobilenet": "^2.1.0",
+    "@tensorflow/tfjs": "^3.7.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
+    "canvas": "^2.8.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -24,6 +27,7 @@
     "mongoose": "^5.12.14",
     "pino": "^6.8.0"
   },
+  "chromium-args": "--mixed-context",
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
