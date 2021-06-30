@@ -1,39 +1,39 @@
 // import User from '../../models/user';
-import Images from '../../models/image';
-import * as mobilenet from '@tensorflow-models/mobilenet';
-import * as tf from '@tensorflow/tfjs';
-import { loadImage, createCanvas } from 'canvas';
+import Images from "../../models/image";
+import * as mobilenet from "@tensorflow-models/mobilenet";
+import * as tf from "@tensorflow/tfjs";
+import { loadImage, createCanvas } from "canvas";
 
 export class ImageService {
   async upload(url, mode, user) {
     try {
       if (!user) {
-        throw { message: 'User must be logged in' };
+        throw { message: "User must be logged in" };
       }
       if (!url || !mode) {
-        throw { message: 'Fill all the fields!' };
+        throw { message: "Fill all the fields!" };
       }
-      console.log('Using TensorFlow backend: ', tf.getBackend());
+      console.log("Using TensorFlow backend: ", tf.getBackend());
 
       const model = await mobilenet.load();
 
       const width = 300;
       const height = 300;
       const canvas = createCanvas(width, height);
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
       const img = await loadImage(url);
       ctx.drawImage(img, 0, 0, width, height);
       const predictions = await model.classify(canvas);
-      console.log(predictions);
+      // console.log(predictions);
       let newTags = [];
       predictions.forEach((tag) => {
-        newTags = [...newTags, ...tag.className.split(',')];
+        newTags = [...newTags, ...tag.className.split(",")];
       });
       const image = await Images.create({
         user: user._id,
         url,
         mode,
-        newTags,
+        tags: newTags,
       });
       return image;
     } catch (error) {
