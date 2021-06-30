@@ -1,12 +1,12 @@
-import User from "../../models/user";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import User from '../../models/user';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export class AuthService {
   async login(userDetail) {
     try {
       if (!userDetail.email || !userDetail.password)
-        throw { message: "Fill all the fields!" };
+        throw { message: 'Fill all the fields!' };
       const user = await User.findOne({
         email: userDetail.email,
       });
@@ -20,6 +20,7 @@ export class AuthService {
       user.password = undefined;
       return { user, token };
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }
@@ -28,7 +29,7 @@ export class AuthService {
     try {
       const { name, email, password, phoneNumber } = userDetail;
       if (!email || !password || !name)
-        throw { message: "Fill all the required fields!" };
+        throw { message: 'Fill all the required fields!' };
       const user = await User.findOne({ email });
       if (user) throw { message: `Email already exists!` };
 
@@ -43,6 +44,7 @@ export class AuthService {
       newUser.password = undefined;
       return { user: newUser };
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }
