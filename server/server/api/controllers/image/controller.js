@@ -1,4 +1,4 @@
-import ImageService from "../../services/image.service";
+import ImageService from '../../services/image.service';
 
 export class Controller {
   async upload(req, res) {
@@ -9,18 +9,18 @@ export class Controller {
       if (image) {
         return res.json({
           status: 200,
-          message: "Successfully uploaded the image!!",
+          message: 'Successfully uploaded the image!!',
           image,
         });
       } else {
         throw {
-          message: "Some error occurred. Try again!!",
+          message: 'Some error occurred. Try again!!',
         };
       }
     } catch (error) {
       res.send({
-        status: error.status || "500",
-        message: error.message || "Something Went Wrong",
+        status: error.status || '500',
+        message: error.message || 'Something Went Wrong',
       });
     }
   }
