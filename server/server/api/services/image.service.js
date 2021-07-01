@@ -2,6 +2,8 @@
 import Images from "../../models/image";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import * as tf from "@tensorflow/tfjs";
+// import Tesseract from "tesseract.js";
+
 import { loadImage, createCanvas } from "canvas";
 
 export class ImageService {
@@ -29,6 +31,12 @@ export class ImageService {
       predictions.forEach((tag) => {
         newTags = [...newTags, ...tag.className.split(",")];
       });
+
+      // const words = await Tesseract.recognize(url, "eng", {
+      //   // logger: (m) => console.log(m),
+      // });
+      // console.log(words.data.text);
+
       const image = await Images.create({
         user: user._id,
         url,
