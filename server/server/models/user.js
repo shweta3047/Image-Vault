@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const { ObjectId } = mongoose.Schema.Types;
 
 const UserSchema = new mongoose.Schema(
   {
@@ -6,6 +7,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    images: [
+      {
+        type: ObjectId,
+        ref: "Image",
+      },
+    ],
     password: {
       type: String,
       required: true,

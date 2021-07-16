@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "express-openapi-validator": "^4.9.5",
     "jsonwebtoken": "^8.5.1",
+    "mongoosastic": "^4.6.0",
     "mongoose": "^5.12.14",
     "pino": "^6.8.0",
     "tesseract.js": "^2.1.4"

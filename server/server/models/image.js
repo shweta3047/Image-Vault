@@ -1,12 +1,8 @@
 import mongoose from "mongoose";
-const { ObjectId } = mongoose.Schema.Types;
+import mongoosastic from "mongoosastic";
 
 const ImageSchema = new mongoose.Schema(
   {
-    user: {
-      type: ObjectId,
-      ref: "User",
-    },
     url: {
       type: String,
       required: true,
@@ -15,10 +11,20 @@ const ImageSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    tags: [String],
-    words: [String],
+    author: {
+      id: {
+        type: String,
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+    },
+    tags: [{ type: String }],
+    text: [{ type: String }],
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Images", ImageSchema);
+export default mongoose.model("Image", ImageSchema, "images");

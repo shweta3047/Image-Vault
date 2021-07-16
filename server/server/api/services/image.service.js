@@ -43,6 +43,7 @@ export class ImageService {
         mode,
         tags: newTags,
       });
+
       return image;
     } catch (error) {
       console.log(error);
