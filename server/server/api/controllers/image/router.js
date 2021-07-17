@@ -7,8 +7,7 @@ export default express
   .Router()
   .post('/upload', isLoggedIn, controller.upload)
   .post('/search', isLoggedIn, controller.searchPrivate)
-  .post('/search/:mode', controller.searchPublic)
-  .get('/', checkMode, controller.check);
+  .post('/search', checkMode, controller.search);
 
 // search images based on tags
 // search private images for particular user

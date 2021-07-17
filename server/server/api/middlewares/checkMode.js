@@ -2,7 +2,7 @@ import isLoggedIn from '../middlewares/isLoggedIn';
 
 module.exports = (req, res, next) => {
   try {
-    mode = req.params.mode;
+    const mode = req.query.mode;
     if (mode == 'public') {
       next();
     } else if (mode == 'private') {

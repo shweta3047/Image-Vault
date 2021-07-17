@@ -19,23 +19,28 @@ export class Controller {
       });
     }
   }
-
-  async searchPublic(req, res) {}
-
-  async searchPrivate(req, res) {}
-
-  async check(req, res) {
-    mode = req.params.mode;
-    if (mode == 'public') {
+  async search(req, res) {
+    try {
+      const { mode, tags } = req.query;
+      if (mode == 'public') {
+        const images = await ImageService.searchPublic(tags);
+        res.send({
+          status: 200,
+          images: images,
+          message: 'Successfully searched public images',
+        });
+      } else {
+        const images = await ImageService.searchPrivate(req.user._id, tags);
+        res.send({
+          status: 200,
+          images: images,
+          message: 'Successfully searched private images',
+        });
+      }
+    } catch (error) {
       res.send({
-        status: 200,
-        message: 'This is a public request',
-      });
-    } else {
-      res.send({
-        status: 200,
-        message: 'This is a private request',
-        user: req.user,
+        status: error.status || '500',
+        message: error.message || 'Something Went Wrong',
       });
     }
   }
